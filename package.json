@@ -1,0 +1,12 @@
+{
+  "name": "trace-evidence-agent",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "An inspectable local evidence investigation agent",
+  "scripts": {
+    "test": "node --test tests/client.test.mjs",
+    "check": "node --check web/app.js"
+  },
+  "engines": { "node": ">=18" }
+}

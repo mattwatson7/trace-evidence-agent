@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Trace is a local evidence investigation agent. Ask better questions. Keep the receipts.">
+  <title>Trace — Keep the receipts.</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css">
+  <script src="/app.js" type="module"></script>
+</head>
+<body>
+  <a class="skip" href="#question">Skip to investigation</a>
+  <header class="topbar">
+    <a href="/" class="brand" aria-label="Trace home"><span class="brand-mark" aria-hidden="true">t</span>trace<span class="brand-period">.</span></a>
+    <span class="wordmark-sub">THE EVIDENCE WORKSPACE</span>
+    <div class="top-actions"><a class="mobile-sources" href="#collection">Sources <span id="mobile-count">0</span> ↓</a><span id="connection" class="connection"><i></i> Local workspace</span><button id="about" class="text-button">How it works <span aria-hidden="true">↗</span></button></div>
+  </header>
+  <div class="workspace">
+    <aside id="collection" class="sidebar" aria-label="Sources and history">
+      <div class="sidebar-heading"><span class="eyebrow">YOUR COLLECTION</span><span id="source-count" class="count">0</span></div>
+      <h2>A little context.<br>A clearer picture.</h2>
+      <p class="muted small">Add the notes, reports, and decisions behind your question.</p>
+      <div id="source-list" class="source-list"></div>
+      <button id="add-source" class="add-source"><span aria-hidden="true">＋</span> Add a source</button>
+      <input id="file-input" type="file" accept=".md,.txt,text/plain,text/markdown" multiple hidden>
+      <button id="upload" class="text-button upload">↑ Upload .txt or .md</button>
+      <div class="collection-info"><span id="collection-size">0 characters</span><span>12 sources max</span></div>
+      <div class="demo-card"><span class="eyebrow">A CASE TO CRACK</span><h3>The Meridian launch</h3><p>Four documents. Conflicting metrics. One launch decision.</p><button id="load-demo" class="demo-button">Load demo collection <span aria-hidden="true">↗</span></button><span class="demo-label">Fictional scenario · No API key needed</span></div>
+      <div class="history-heading"><span class="eyebrow">RECENT INVESTIGATIONS</span><button id="clear-history" class="text-button">Clear</button></div>
+      <div id="history-list" class="history-list"><p class="muted small">Your next question starts a trail.</p></div>
+      <div class="privacy"><span aria-hidden="true">⌁</span><p>Your documents stay on this computer.<br>History saves in this browser.</p></div>
+    </aside>
+    <main id="main">
+      <section class="intro">
+        <div class="intro-top"><span class="eyebrow"><span class="tiny-cross" aria-hidden="true">✳</span> LESS GUESSWORK. MORE GROUND TRUTH.</span><span class="edition">WORKSPACE / 001</span></div>
+        <h1>Good questions.<br><em>Solid evidence.</em></h1>
+        <p class="lede">Turn scattered documents into a brief you can stand behind.<br class="desktop-break"> Trace finds the evidence, flags discrepancies, and keeps every source in view.</p>
+      </section>
+      <section class="question-card" aria-labelledby="question-label">
+        <form id="investigate-form">
+          <label for="question" id="question-label" class="eyebrow">WHAT DO YOU WANT TO FIND OUT?</label>
+          <textarea id="question" name="question" rows="2" maxlength="1000" placeholder="What is blocking the launch, and where do the reports disagree?" required></textarea>
+          <div class="composer-bottom"><span class="composer-hint"><span aria-hidden="true">⌘</span> <span id="shortcut-hint">Ctrl + Enter to investigate</span></span><button id="run" class="primary" type="submit">Investigate <span aria-hidden="true">↗</span></button><button id="cancel" class="secondary" type="button" hidden>Cancel</button></div>
+        </form>
+        <div class="engine-settings"><span class="mode-label"><i></i> <span id="mode-caption">Extractive mode</span></span><details><summary>Local AI settings</summary><div class="model-controls"><label for="model">Ollama model <span class="muted">(optional)</span></label><input id="model" placeholder="e.g. qwen3:4b" maxlength="120"><p>Leave blank for verbatim evidence. A model name enables synthesis through Ollama on this computer. No models are downloaded automatically.</p></div></details></div>
+      </section>
+      <div id="suggestions" class="suggestions"><span>TRY ASKING</span><button data-question="What is blocking the Meridian launch, and which metrics disagree?">What’s blocking the launch? <span aria-hidden="true">↗</span></button><button data-question="What does the team recommend before the rollout?">What should happen next? <span aria-hidden="true">↗</span></button></div>
+      <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+      <section id="loading" class="loading" aria-live="polite" hidden><span class="spinner"></span><div><h2>Following the evidence…</h2><p>Planning → searching → cross-checking → composing</p></div></section>
+      <section id="report" aria-label="Investigation report" hidden></section>
+      <section id="empty" class="empty-state">
+        <div class="empty-art" aria-hidden="true"><div class="paper paper-back"></div><div class="paper paper-front"><span></span><span></span><span></span><b>↗</b></div><i>✳</i></div>
+        <span class="eyebrow">EVERY ANSWER STARTS SOMEWHERE</span><h2>Follow a thread. Find the facts.</h2><p>Add your sources and ask a question.<br>Or explore the Meridian demo to see Trace in action.</p>
+        <div class="principles"><span><b>01</b> Search the sources</span><span><b>02</b> Check the differences</span><span><b>03</b> Show the receipts</span></div>
+      </section>
+      <footer class="footer"><span>Built for the question behind the question.</span><span>TRACE / LOCAL FIRST</span></footer>
+    </main>
+  </div>
+  <dialog id="source-dialog" aria-labelledby="source-title"><form id="source-form"><div class="dialog-top"><span class="eyebrow">BUILD YOUR COLLECTION</span><button type="button" class="icon-button" data-close="source-dialog" aria-label="Close source editor">×</button></div><h2 id="source-title">Add a source</h2><label for="source-name">Document name</label><input id="source-name" maxlength="120" placeholder="e.g. release-notes.md" required><label for="source-text">Source text</label><textarea id="source-text" rows="10" maxlength="100000" placeholder="Paste the original text here…" required></textarea><p class="muted small">Plain text or Markdown · 100,000 characters per source</p><p id="source-error" class="form-error" role="alert"></p><button class="primary" type="submit">Save source <span aria-hidden="true">↗</span></button></form></dialog>
+  <dialog id="inspect-dialog" class="inspect-dialog" aria-labelledby="inspect-title"><div class="dialog-top"><span class="eyebrow">BACK TO THE SOURCE</span><button class="icon-button" data-close="inspect-dialog" aria-label="Close source viewer">×</button></div><h2 id="inspect-title"></h2><p id="inspect-location" class="muted small"></p><div id="inspect-text" class="source-text"></div><button id="remove-source" class="danger">Remove this source</button></dialog>
+  <dialog id="about-dialog" aria-labelledby="about-title"><div class="dialog-top"><span class="eyebrow">AN INSPECTABLE AGENT</span><button class="icon-button" data-close="about-dialog" aria-label="Close about">×</button></div><h2 id="about-title">Less magic.<br>More receipts.</h2><p>Trace follows a bounded investigation loop: plan search terms, retrieve passages with BM25, expand the search, verify quotes, and compare explicit numerical statements.</p><p>Default mode is <strong>extractive</strong>: findings are real quotations, not AI-generated answers. Optional Ollama adds local language-model synthesis with citation-ID validation.</p><p>Lexical matching can miss paraphrases. A numerical discrepancy may reflect different dates or conditions. A valid citation does not guarantee that an AI summary is accurate. Inspect the sources before acting.</p><p class="muted small">Up to 12 sources · 300,000 total characters · UTF-8 .txt and .md<br>No cloud calls, telemetry, or runtime dependencies.</p><button class="primary" data-close="about-dialog">Got it <span aria-hidden="true">↗</span></button></dialog>
+</body>
+</html>
