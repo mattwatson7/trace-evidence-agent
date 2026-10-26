@@ -85,6 +85,15 @@ retrieval benchmark, or production penetration test was performed. Browser tests
 were on Chromium; Safari and Firefox were not tested. CI adds Windows/Linux and
 Python 3.11/3.13 coverage; its actual remote outcome must be checked separately.
 
+## Remote verification
+
+The published implementation commit `4cfe1564d31e307a8ab1cec111180d90f3df5575`
+passed all four jobs in [GitHub Actions run 40315492709](https://github.com/mattwatson7/trace-evidence-agent/actions/runs/40315492709):
+Windows/Python 3.11, Windows/Python 3.13, Linux/Python 3.11, and Linux/Python 3.13.
+Each ran Python compilation, the full 64-test backend suite, all 8 client tests,
+JavaScript syntax validation, and the workflow's whitespace check. The fetched
+remote tree was compared with the reviewed local index and matched exactly.
+
 A repeated-request regression additionally checks 80 early HTTP rejections in one
 test. This reproduced a Windows reset caused by closing sockets with unread
 request bytes. Rejected small bodies are now drained with strict size/time bounds

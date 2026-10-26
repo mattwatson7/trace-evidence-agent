@@ -19,7 +19,7 @@ Demo material is explicitly fictional. User documents are treated as data.
 - [x] Run browser acceptance flows at desktop and mobile widths; check errors and
   overflow; capture a real screenshot. Run full checks and inspect final diff.
 - [x] Add README, architecture, test instructions, license, CI, sample submission.
-- [ ] Create GitHub repository in the authenticated user's account, publish the
+- [x] Create GitHub repository in the authenticated user's account, publish the
   project, verify remote files and commit. No deployment requested or performed.
 
 ## Checks and handoff
@@ -30,9 +30,17 @@ Windows early-response resets and Python/browser Unicode coordinate regressions.
 
 The workspace was empty; no prior code or user changes were overwritten. Public
 repository created at https://github.com/mattwatson7/trace-evidence-agent.
-Publication and remote CI verification are the remaining steps. GitHub connector
-access works; local gh credentials are invalid. No deployment has been requested.
+Published implementation commit: 4cfe1564d31e307a8ab1cec111180d90f3df5575.
+All four GitHub CI matrix jobs passed (Windows/Linux, Python 3.11/3.13):
+https://github.com/mattwatson7/trace-evidence-agent/actions/runs/40315492709
+The fetched remote tree exactly matched the reviewed local files. GitHub connector
+access works; local gh credentials are invalid. No deployment was requested.
 
 Optional live Ollama inference is unverified. Wire protocol and failure handling
 were checked using real loopback test servers; temporary fixtures were stopped.
 No packages or models were installed and no paid APIs were called.
+
+No remaining implementation blockers. The working local demo is available at
+http://127.0.0.1:8765 while its server is running. Next step: review README and
+docs/SUBMISSION.md, run the demo, and adapt the project description before using it
+in an application. No application was edited or submitted.
